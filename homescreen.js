@@ -11,6 +11,7 @@ function setup() {
 		'Contacts',
 		contacts_button_pos,
 		button_size,
+		button_size,
 		contacts_button_action
 	);
 
@@ -22,6 +23,7 @@ function setup() {
 		'Calculator',
 		calc_button_pos,
 		button_size,
+		button_size,
 		calc_button_action
 	);
 
@@ -32,6 +34,7 @@ function setup() {
 	camera_button = new Button(
 		'Camera',
 		camera_button_pos,
+		button_size,
 		button_size,
 		camera_button_action
 	);
@@ -47,6 +50,7 @@ function draw() {
 	fill(0);
 	noStroke();
 	textSize(24);
+	textAlign(CENTER, CENTER)
 	text('Homescreen', m_width/2, m_height/2);
 
 	for (var i = 0; i < buttons.length; i++) {
