@@ -1,9 +1,21 @@
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	
-	button_size = m_width/3;
+	button_size = m_width/4;
 
-	contacts_button_pos = createVector(0, m_height-button_size);
+	dialer_button_pos = createVector(0, m_height-button_size);
+	dialer_button_action = function() {
+		window.location.replace("dialer.html");
+	}
+	dialer_button = new Button(
+		'Dialer',
+		dialer_button_pos,
+		button_size,
+		button_size,
+		dialer_button_action
+	);
+
+	contacts_button_pos = createVector(button_size, m_height-button_size);
 	contacts_button_action = function() {
 		window.location.replace("contacts.html");
 	}
@@ -15,7 +27,7 @@ function setup() {
 		contacts_button_action
 	);
 
-	calc_button_pos = createVector(button_size, m_height-button_size);
+	calc_button_pos = createVector(2*button_size, m_height-button_size);
 	calc_button_action = function() {
 		window.location.replace("calculator.html");
 	}
@@ -27,7 +39,7 @@ function setup() {
 		calc_button_action
 	);
 
-	camera_button_pos = createVector(2*button_size, m_height-button_size);
+	camera_button_pos = createVector(3*button_size, m_height-button_size);
 	camera_button_action = function() {
 		window.location.replace("camera.html");
 	}
@@ -39,7 +51,7 @@ function setup() {
 		camera_button_action
 	);
 
-	buttons = [contacts_button, calc_button, camera_button];
+	buttons = [dialer_button, contacts_button, calc_button, camera_button];
 
 }
 

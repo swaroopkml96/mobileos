@@ -53,7 +53,7 @@ class Button {
 			this.pos,
 			this.width,
 			this.height,
-			24
+			18
 		);
 	}
 	draw() {
@@ -90,7 +90,7 @@ class Button {
 };
 
 class InputPad {
-	// An array of Button objects, can be created using an array
+	// An array of Button objects, can be created using an array of names
 	// Accumulates and provides access to, a string of previous inputs
 	constructor(button_array, pos, width, height) {
 		this.pos = pos;
