@@ -1,7 +1,8 @@
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	
+
 	button_size = m_width/4;
+	music_button_size=m_width/4;
 
 	dialer_button_pos = createVector(0, m_height-button_size);
 	dialer_button_action = function() {
@@ -51,7 +52,19 @@ function setup() {
 		camera_button_action
 	);
 
-	buttons = [dialer_button, contacts_button, calc_button, camera_button];
+	music_button_pos = createVector(0, m_height-2*music_button_size);
+	music_button_action = function() {
+		window.location.replace("music.html");
+	}
+	music_button = new Button(
+		'Music',
+		music_button_pos,
+		music_button_size,
+		music_button_size,
+		music_button_action
+	);
+
+	buttons = [dialer_button, contacts_button, calc_button, camera_button, music_button];
 
 }
 
