@@ -184,7 +184,7 @@ class InputPad {
 		this.current_string = "";
 	}
 
-	backspace() {
-		this.current_string = this.current_string.substring(0, this.current_string.length-2);
+	backspace(n) {
+		this.current_string = this.current_string.substring(0, this.current_string.length-n);
 	}
 };
