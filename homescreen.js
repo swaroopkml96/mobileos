@@ -49,7 +49,10 @@ function setup() {
 		camera_button_pos,
 		button_size,
 		button_size,
-		camera_button_action
+		camera_button_action,
+		'image',
+		'assets/camera.png',
+		'assets/camera_clicked.png'
 	);
 
 	music_button_pos = createVector(0, m_height-2*music_button_size);
