@@ -4,6 +4,7 @@ function setup() {
 	button_size = m_width/4;
 	music_button_size=m_width/4;
 
+	
 	dialer_button_pos = createVector(0, m_height-button_size);
 	dialer_button_action = function() {
 		window.location.replace("dialer.html");
@@ -15,7 +16,7 @@ function setup() {
 		button_size,
 		dialer_button_action,
 		'image',
-		'assets/call.png',
+		'assets/cal.png',
 	);
 
 	contacts_button_pos = createVector(button_size, m_height-button_size);
@@ -29,7 +30,7 @@ function setup() {
 		button_size,
 		contacts_button_action,
 		'image',
-		'assets/contact.png',
+		'assets/cont.png',
 	);
 
 	calc_button_pos = createVector(2*button_size, m_height-button_size);
@@ -78,19 +79,19 @@ function setup() {
 	);
 
 	buttons = [dialer_button, contacts_button, calc_button, camera_button, music_button];
-
+	wall = loadImage('assets/wall.jpeg');
 }
 
 function draw() {
 	draw_outline();
-
+	image(wall,0,0,m_width,m_height);
 	// Temporary
 	//fill(0);
 	//noStroke();
 	//textSize(24);
 	//textAlign(CENTER, CENTER)
 	//text('Homescreen', m_width/2, m_height/2);
-	//image('assets/ash.png',0,0,m_width,m_height);
+	
 
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].draw();
