@@ -1,14 +1,14 @@
-var contactTable;
+var contact_table;
+var contact_textbox = [];
 
 function preload(){
-	contactTable = loadTable('assets/contacts.csv', 'csv', 'header');
+	contact_table = loadTable('assets/contacts.csv', 'csv', 'header');
 }
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-
 	display_pos = createVector(m_width/20, m_height*2.5/10);
-
+	
 	// Display for Search
 	search_pos = createVector(m_width/100, m_height/100);
 	search_width = m_width*3/4;
@@ -23,6 +23,33 @@ function setup() {
 		CENTER,
 		CENTER
 	);
+
+
+	// Display for contact list
+	font = 15;
+	contact_pos = createVector(m_width/20+ m_width/100, m_height*2.5/10+ m_height/100);
+	contact_width = m_width -m_width*2/20;
+	contact_height = font+m_height/100;
+	contact_txt = "";	
+	
+	total_height = contact_pos.y+contact_height;
+	do{
+		contact_textbox.push(new TextBox(
+				contact_txt,
+				createVector(contact_pos.x, contact_pos.y),
+				contact_width,
+				contact_height,
+				font,
+				LEFT,
+				CENTER
+			)		
+		);
+
+
+		contact_pos.y += contact_height;
+		total_height += contact_height;
+	}while(total_height <= (m_height*6/10 + m_height*2.5/10)  );
+	
 
 	//Search Button
 	search_button_pos = createVector(search_width + m_width/100, search_pos.y);
@@ -103,6 +130,8 @@ function draw() {
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].draw();
 	}
+
+	drawAllContactList();
 }
 
 function mousePressed() {
@@ -110,5 +139,18 @@ function mousePressed() {
 		if (buttons[i].isin(mouseX, mouseY)) {
 			buttons[i].click();
 		}
+	}
+}
+
+function drawAllContactList(){
+	for(var i = 0; i<contact_textbox.length ;i++){
+		if(i < contact_table.getRowCount()){
+			contact_textbox[i].update_txt(
+				contact_table.get(i, 'fname')+ " "+
+				contact_table.get(i, 'lname')+ " : "+
+				contact_table.get(i, 'number')
+			);
+		}
+		contact_textbox[i].draw();
 	}
 }
