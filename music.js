@@ -71,3 +71,96 @@ function pre()
   $("#image img").attr("src",poster[currentSong]);
   $("#bg img").attr("src",poster[currentSong]);
 }
+
+function gohome()
+{
+  window.location.href="homescreen.html";
+}
+
+// List of songs ...
+// function setup() {
+// 	createCanvas(windowWidth, windowHeight);
+// }
+//
+// function initAudio(){
+// 	var audio, dir, ext, mylist;
+// 	dir = "audio/";
+// 	ext = ".mp3";
+// 	// Audio Object
+// 	audio = new Audio();
+// 	audio.src = dir+"Jam_On_It"+ext;
+// 	audio.play();
+// 	// Event Handling
+// 	mylist = document.getElementById("mylist");
+// 	mylist.addEventListener("change", changeTrack);
+// 	// Functions
+// 	function changeTrack(event){
+// 		audio.src = dir+event.target.value+ext;
+// 	    audio.play();
+// 	}
+// }
+// window.addEventListener("load", initAudio);
+
+
+//Audio track list with play button
+// function _(id){
+// 	return document.getElementById(id);
+// }
+// function audioApp(){
+// 	var audio = new Audio();
+// 	var audio_folder = "Songs/";
+// 	var audio_ext = ".mp3";
+// 	var audio_index = 1;
+// 	var is_playing = false;
+// 	var playingtrack;
+// 	var trackbox = _("trackbox");
+// 	var tracks = {
+// 	    "track1":["Ondu Malebillu", "Ondu Malebillu"],
+// 		"track2":["Something Just Like This", "Something Just Like This"],
+// 		"track3":["Too good at goodbye", "Too good at goodbye"]
+// 	};
+// 	for(var track in tracks){
+// 		var tb = document.createElement("div");
+// 		var pb = document.createElement("button");
+// 		var tn = document.createElement("div");
+// 		tb.className = "trackbar";
+// 		pb.className = "playbutton";
+// 		tn.className = "trackname";
+// 		tn.innerHTML = audio_index+". "+tracks[track][0];
+// 		pb.id = tracks[track][1];
+// 		pb.addEventListener("click", switchTrack);
+// 		tb.appendChild(pb);
+// 		tb.appendChild(tn);
+// 		trackbox.appendChild(tb);
+// 		audio_index++;
+// 	}
+// 	audio.addEventListener("ended",function(){
+// 	    _(playingtrack).style.background = "url(Album/play_btn.png)";
+// 		playingtrack = "";
+// 		is_playing = false;
+// 	});
+// 	function switchTrack(event){
+// 		if(is_playing){
+// 		    if(playingtrack != event.target.id){
+// 			    is_playing = true;
+// 				_(playingtrack).style.background = "url(Album/play_btn.png)";
+// 			    event.target.style.background = "url(Album/Pause_btn.png)";
+// 			    audio.src = audio_folder+event.target.id+audio_ext;
+// 	            audio.play();
+// 			} else {
+// 			    audio.pause();
+// 			    is_playing = false;
+// 				event.target.style.background = "url(Album/play_btn.png)";
+// 			}
+// 		} else {
+// 			is_playing = true;
+// 			event.target.style.background = "url(Album/Pause_btn.png)";
+// 			if(playingtrack != event.target.id){
+// 				audio.src = audio_folder+event.target.id+audio_ext;
+// 			}
+// 	        audio.play();
+// 		}
+// 		playingtrack = event.target.id;
+// 	}
+// }
+// window.addEventListener("load", audioApp);

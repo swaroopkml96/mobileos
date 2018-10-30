@@ -3,8 +3,8 @@ body{
   padding: 0px;
 }
 #bg{
-  height:100vh;
-  width: 100%;
+  height:600px;
+  width: 400px;
   position: absolute;
   overflow: hidden;
 }
@@ -33,9 +33,9 @@ body{
     background-color:#fff;
     border-radius: 15px;
     position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top:20%;
+    left: 15%;
+    transform: translate(-50%,-20%);
     z-index: 999;
 }
 #image img{
@@ -55,7 +55,7 @@ body{
     font-family: monospace;
     font-size: 18px;
     position: absolute;
-    top:60%;
+    top:47%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -80,6 +80,23 @@ body{
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+#gohome{
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 10%;
+  background-color:royalblue;
+  cursor: pointer;
+  position: absolute;
+  /* border-radius: 50%; */
+  background-color: Transparent;
+  /* background-repeat:no-repeat; */
+  border: none;
+  overflow: hidden;
+  outline: none;
+  transform: translate(-50%,-50%);
 }
 #next{
     width: 30px;

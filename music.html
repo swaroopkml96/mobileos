@@ -4,16 +4,20 @@
     <title>Music Player </title>
     <link href="music.css" rel="stylesheet"/>
 
+    <script src="common.js"></script>
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.dom.js"></script>
+    <script src="libraries/p5.sound.js"></script>
 </head>
 <body>
   <div id="bg">
     <div id="blacklayer"></div>
-    <img src="Poster1.jpg"/>
+    <img src="2.jpeg"/>
   </div>
 
   <div id="main">
     <div id="image">
-      <img src="Poster1.jpg"/>
+      <img src="2.jpeg"/>
     </div>
 
     <div id="player">
@@ -22,6 +26,7 @@
         <button id="pre"><img src="pre.png" height="90%" width="90%"/></button>
         <button id="play" onclick="playOrPauseSong()"><img src="Pause.png"/></button>
         <button id="next" onclick="next()"><img src="Next.png" height="90%" width="90%"/></button>
+
       </div>
 
       <div id="seek-bar">
@@ -30,10 +35,117 @@
       </div>
 
     </div>
+    <div>
+      <button id="home" onclick="gohome()"><img src="gohome.png" height="10%" width="28%"/></button>
+    </div>
   </div>
 
+<script src="music.js"></script>
 </body>
 
-<script src="music.js"></script>
+
 
 </html>
+
+<!--List of songs
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>P5js</title>
+
+	<style>
+		a {
+		  color: blue;
+		  font-family: helvetica;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		}
+
+		a:hover {
+		  color: black;
+		}
+	</style>
+  <style>
+    #mylist{ font-size:15px; width:400px; padding:5px; }
+  </style>
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="common.js"></script>
+	<script src="music.js"></script>
+
+	<style>
+		body {
+			margin:0;
+			padding:0;
+			overflow: hidden;
+		}
+		canvas {
+			margin:auto;
+		}
+	</style>
+</head>
+<body>
+  <select id="mylist" size="4">
+    <option value="Jam_On_It">Jam On It</option>
+    <option value="Stoker">Stoker</option>
+    <option value="Skull_Fire">Skull Fire</option>
+    <option value="Scurvy_Pirate">Scurvy Pirate</option>
+  </select>
+
+</body>
+</html> -->
+
+<!-- Audio track list with play button -->
+
+<!-- <html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>P5js</title>
+
+	<style>
+		a {
+		  color: blue;
+		  font-family: helvetica;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		}
+
+		a:hover {
+		  color: black;
+		}
+	</style>
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="common.js"></script>
+	<script src="music.js"></script>
+
+	<style>
+		body {
+			margin:0;
+			padding:0;
+			overflow: hidden;
+		}
+		canvas {
+			margin:auto;
+		}
+
+    .trackbar{ background:#DDD; height:50px; width:device-width; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; }
+    .trackbar:nth-child(even) { background:#EEE; }
+    .playbutton{ opacity:.8; display:block; float:left; width:19px; height:22px; margin:14px 0px 0px 14px; background:url(Album/play_btn.png) no-repeat; border:none; cursor:pointer; outline:none; }
+    .playbutton:hover{ opacity:1; }
+    .trackname{ float:left; color:#000; margin:12px 0px 0px 14px; font-size:20px; font-weight:bold; }
+	</style>
+</head>
+<body>
+  <div id="trackbox"></div>
+</body>
+</html> -->
