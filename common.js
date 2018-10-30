@@ -3,6 +3,9 @@
 var m_width = 400;
 var m_height = 600;
 
+var lightblue = [200, 200, 200];
+var orange = [200, 150, 100];
+
 function draw_outline(){
 	noFill();
 	stroke(100);
@@ -36,56 +39,36 @@ class TextBox {
 
 class Button {
 	// A rectangular clickable region which performs action() on click.
-	/* Examples:
-		Button with text: (lighblue, orange)
-			Button(name, pos, width, height, action)
-		Button with text: c1: default color, c2: when pressed
-			Button(name, pos, width, height, action, 'text', default_color, onclick_color)
-		Button with image: (pass mode='image')
-			Button(name, pos, width, height, action, 'image', default_img_path, onclick_img_path)
-	*/
-	constructor(name,pos,width,height,action,mode='text',def='lightblue',onclick='orange') {
-		this.name = name;
+	constructor(name, pos, width, height, action, c1=color(lightblue), c2=color(orange)) {
 		this.pos = pos;
 		this.width = width;
 		this.height = height;
+		this.name = name;
 		this.action = action;
-		this.mode = mode;
-
-		console.log(mode);
-
-
-		if (this.mode == "text") {
-			this.def = color(def);
-			this.onclick = color(onclick);
-			this.current = this.def;
-			this.txt_box = new TextBox(
-				this.name,
-				this.pos,
-				this.width,
-				this.height,
-				18
-			);
-		}
-		else {
-			this.def = loadImage(def);
-			this.onclick = loadImage(onclick);
-			this.current = this.def;
-		}
-		
+		this.c1 = c1;
+		this.c2 = c2;
+		this.color = c1;
+		this.txt_box = new TextBox(
+			this.name,
+			this.pos,
+			this.width,
+			this.height,
+			18
+		);
 	}
 	draw() {
-		if (this.mode == "text"){
-			fill(this.current);
-			stroke(0);
-			rect(this.pos.x, this.pos.y, this.width, this.height);
-			this.txt_box.draw();
-			this.current = this.def;
-		}
-		else {
-			image(this.current, this.pos.x, this.pos.y, this.width, this.height);
-			this.current = this.def;
-		}
+		fill(this.color);
+		stroke(0);
+		rect(this.pos.x, this.pos.y, this.width, this.height);
+		this.color = this.c1;
+
+		//fill(0);
+		//noStroke();
+		//textAlign(CENTER, CENTER);
+		//textSize(24);
+		//text(this.name, this.pos.x, this.pos.y, this.width, this.height);
+
+		this.txt_box.draw();
 	}
 	isin(x, y){
 		// Returns true if (x, y) is inside the button region
@@ -100,7 +83,8 @@ class Button {
 		return false;
 	}
 	click() {
-		this.current = this.onclick;
+		//console.log(this.name)
+		this.color = this.c2;
 		return this.action();
 	}
 };
