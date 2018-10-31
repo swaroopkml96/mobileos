@@ -2,7 +2,8 @@ var contact_table;
 var state;
 var sub_state;
 var contact_textbox = [];
-var fname, lname, number;
+// var contact_button_edit = [];
+// var contact_button_fav = [];
 var fname, lname, number, search_term, search_counter;
 
 function preload(){
@@ -17,6 +18,7 @@ function setup() {
 	lname = "e.g naidu";
 	number = "e.g 9196483216";
 	search_term = "";
+	search_counter = 0;
 	display_pos = createVector(m_width/20, m_height*2.5/10);
 	
 	// Display for Search
@@ -55,6 +57,15 @@ function setup() {
 			)		
 		);
 
+		// contact_button_edit.push(new Button(
+		// 		'Edit',
+		// 		createVector(m_width/20+ m_width/100+m_width -m_width*2/20, m_height*2.5/10+ m_height/100),
+		// 		m_width - search_width - 2*m_width/100,
+		// 		contact_height,
+		// 		search_button_action
+		// 	)
+		// );
+		// contact_button_fav.push();
 
 		contact_pos.y += contact_height;
 		total_height += contact_height;
@@ -452,6 +463,7 @@ function drawSearchContactList() {
 					contact_table.get(i, 'number')
 				);
 			}
-		}		
+		}
+		contact_textbox[i].draw();		
 	}
 }
