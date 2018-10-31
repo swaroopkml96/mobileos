@@ -3,6 +3,7 @@ var state;
 var sub_state;
 var contact_textbox = [];
 var fname, lname, number;
+var fname, lname, number, search_term, search_counter;
 
 function preload(){
 	contact_table = loadTable('assets/contacts.csv', 'csv', 'header');
@@ -15,6 +16,7 @@ function setup() {
 	fname = "e.g john";
 	lname = "e.g naidu";
 	number = "e.g 9196483216";
+	search_term = "";
 	display_pos = createVector(m_width/20, m_height*2.5/10);
 	
 	// Display for Search
@@ -62,7 +64,8 @@ function setup() {
 	//Search Button
 	search_button_pos = createVector(search_width + m_width/100, search_pos.y);
 	search_button_action = function() {
-		alert("search pressed");
+		state = "search";
+		sub_state = "search"
 	}
 	search_button = new Button(
 		'Search',
@@ -251,6 +254,40 @@ function setup() {
 		LEFT,
 		CENTER
 	);
+
+	//X search
+	x_search_button_action = function() {
+		drawBlankScreen();
+		state = "all";
+		sub_state = "all";
+		search.update_txt("Search Contact");
+		search_term = "";
+	}
+	x_search_button = new Button(
+		'x',
+		x_button_pos,
+		m_width/10,
+		m_height/20,
+		x_search_button_action
+	);
+
+	//run search
+	run_search_button_pos = createVector(m_width*9/10-m_width/100, m_height/20+m_height*2/100);
+	run_search_button_action = function() {
+		drawBlankScreen();
+		state = "all";
+		sub_state = "search";
+		search.update_txt("Search Contact");
+	}
+	run_search_button = new Button(
+		'OK',
+		save_button_pos,
+		m_width/10,
+		m_height/20,
+		run_search_button_action
+	);
+
+	buttons_search = [x_search_button, run_search_button];
 }
 
 
@@ -263,18 +300,26 @@ function draw_boarder(pos, width, height){
 
 function draw() {
 	draw_outline();
-	// draw_boarder(search_pos,search_width,search_height);
 	
-	if(state == "all") {
+	if(state == "all" && sub_state == "all") {
 		draw_boarder(display_pos, m_width -m_width*2/20, m_height*6/10);
 		search.draw();
 		for (var i = 0; i < buttons_all.length; i++) {
 			buttons_all[i].draw();
 		}
 		drawAllContactList();
+	} else if(state == "all" && sub_state == "search") {
+		draw_boarder(display_pos, m_width -m_width*2/20, m_height*6/10);
+		search.draw();
+		for (var i = 0; i < buttons_all.length; i++) {
+			buttons_all[i].draw();
+		}
+		drawSearchContactList();
 	} else if(state == "add"){
 		drawAddContact();
-	}	
+	} else if(state == "search") {
+		drawSearchContact();
+	}
 }
 
 function mousePressed() {
@@ -284,13 +329,13 @@ function mousePressed() {
 				buttons_all[i].click();
 			}
 		}
+
 	} else if(state == "add") {
 		for (var i = 0; i < buttons_add.length; i++) {
 			if (buttons_add[i].isin(mouseX, mouseY)) {
 				buttons_add[i].click();
 			}
 		}
-
 		if(sub_state == "fname") {
 			if (keypad.isin(mouseX, mouseY)) {
 				keypad.click(mouseX, mouseY);
@@ -302,6 +347,16 @@ function mousePressed() {
 		} else if(sub_state == "num") {
 			if (keypad.isin(mouseX, mouseY)) {
 				keypad.click(mouseX, mouseY);
+			}
+		}
+
+	} else if(state == "search") {
+		if (keypad.isin(mouseX, mouseY)) {
+			keypad.click(mouseX, mouseY);		
+		}
+		for (var i = 0; i < buttons_search.length; i++) {
+			if (buttons_search[i].isin(mouseX, mouseY)) {
+				buttons_search[i].click();
 			}
 		}
 	}
@@ -367,4 +422,36 @@ function saveContact() {
 	newRow.setString('lname', lname);
 	newRow.setString('number', number);
 	newRow.setString('fav', 0);
+}
+
+function drawSearchContact() {
+	drawBlankScreen();
+	draw_boarder(search_pos,search_width,search_height);	
+	for (var i = 0; i < buttons_search.length; i++) {
+		buttons_search[i].draw();
+	}
+	keypad.draw();
+	if (search_term.length > 0 && search_term[search_term.length-1] == "<") {
+		keypad.backspace();
+	}
+	search_term = keypad.read_input();
+	search.update_txt(search_term);	
+	search.draw();
+}
+
+function drawSearchContactList() {
+	for(var i = 0; i<contact_textbox.length ;i++){
+		contact_textbox[i].update_txt("");
+	}
+	for(var i = 0; i<contact_textbox.length ;i++){
+		if(i < contact_table.getRowCount()){
+			if(contact_table.get(i, 'fname') == search_term) {
+				contact_textbox[i].update_txt(
+					contact_table.get(i, 'fname')+ " "+
+					contact_table.get(i, 'lname')+ " : "+
+					contact_table.get(i, 'number')
+				);
+			}
+		}		
+	}
 }
