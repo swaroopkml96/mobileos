@@ -52,7 +52,7 @@ class Button {
 		this.action = action;
 		this.mode = mode;
 
-		console.log(mode);
+		// console.log(mode);
 
 
 		if (this.mode == "text") {
@@ -186,5 +186,9 @@ class InputPad {
 
 	backspace() {
 		this.current_string = this.current_string.substring(0, this.current_string.length-2);
+	}
+
+	feed(input) {
+		this.current_string = input;
 	}
 };
