@@ -1,6 +1,6 @@
 //Array of song lists & playlist art
-var songs=["Songs/Ondu Malebillu.mp3","Songs/Something Just Like This.mp3","Songs/Too good at goodbye.mp3"];
-var poster = ["1.jpeg","2.jpeg","3.jpeg"];
+var songs=["assets/Songs/Ondu Malebillu.mp3","assets/Songs/Something Just Like This.mp3","assets/Songs/Too good at goodbye.mp3"];
+var poster = ["assets/Album/1.jpeg","assets/Album/2.jpeg","assets/Album/3.jpeg"];
 
 var songTitle = document.getElementById("songTitle");
 var fillBar = document.getElementById("fill");
@@ -15,7 +15,7 @@ window.onload = playSong;
 function playSong()
 {
 song.src = songs[currentSong];  //set the source of 0th song
-songTitle.textContent = songs[currentSong].substring(6); // set the title of song
+songTitle.textContent = songs[currentSong].substring(13); // set the title of song
 song.play();    // play the song
 }
 
@@ -26,12 +26,12 @@ function playOrPauseSong()
   if(song.paused)
   {
     song.play();
-    $("#play img").attr("src","Pause.png");
+    $("#play img").attr("src","assets/Album/Pause.png");
   }
   else
   {
     song.pause();
-    $("#play img").attr("src","Play.png");
+    $("#play img").attr("src","assets/Album/Play.png");
   }
 }
 
@@ -54,9 +54,9 @@ function next()
     currentSong = 0;
   }
   playSong();
-  $("#play img").attr("src","Pause.png");
-  $("#image img").attr("src",poster[currentSong]);
-  $("#bg img").attr("src",poster[currentSong]);
+  $("#play img").attr("src","assets/Album/Pause.png");
+  $("#image img").attr("src",poster[currentSong].substring(13));
+  $("#bg img").attr("src",poster[currentSong].substring(13));
 }
 //Going back to previous one
 function pre()
@@ -67,9 +67,9 @@ function pre()
     currentSong = 2;
   }
   playSong();
-  $("#play img").attr("src","Pause.png");
-  $("#image img").attr("src",poster[currentSong]);
-  $("#bg img").attr("src",poster[currentSong]);
+  $("#play img").attr("src","assets/Album/Pause.png");
+  $("#image img").attr("src",poster[currentSong].substring(13));
+  $("#bg img").attr("src",poster[currentSong].substring(13));
 }
 
 function gohome()

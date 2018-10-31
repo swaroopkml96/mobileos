@@ -104,7 +104,7 @@ class InputPad {
 		let buttons = [];
 		let button_width = this.width / button_array[0].length;
 		let button_height = this.height / button_array.length;
-		
+
 		for (var i = 0; i < button_array.length; i++) {
 			for (var j = 0; j < button_array[i].length; j++) {
 				let button_name = button_array[i][j];
