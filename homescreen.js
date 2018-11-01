@@ -4,6 +4,7 @@ function setup() {
 	button_size = m_width/4;
 	music_button_size=m_width/4;
 
+	
 	dialer_button_pos = createVector(0, m_height-button_size);
 	dialer_button_action = function() {
 		window.location.replace("dialer.html");
@@ -13,7 +14,9 @@ function setup() {
 		dialer_button_pos,
 		button_size,
 		button_size,
-		dialer_button_action
+		dialer_button_action,
+		'image',
+		'assets/cal.png',
 	);
 
 	contacts_button_pos = createVector(button_size, m_height-button_size);
@@ -25,7 +28,9 @@ function setup() {
 		contacts_button_pos,
 		button_size,
 		button_size,
-		contacts_button_action
+		contacts_button_action,
+		'image',
+		'assets/cont.png',
 	);
 
 	calc_button_pos = createVector(2*button_size, m_height-button_size);
@@ -37,7 +42,10 @@ function setup() {
 		calc_button_pos,
 		button_size,
 		button_size,
-		calc_button_action
+		calc_button_action,
+		'image',
+		'assets/calcci.png',
+		'assets/calci.png'
 	);
 
 	camera_button_pos = createVector(3*button_size, m_height-button_size);
@@ -49,7 +57,10 @@ function setup() {
 		camera_button_pos,
 		button_size,
 		button_size,
-		camera_button_action
+		camera_button_action,
+		'image',
+		'assets/camera.png',
+		'assets/camera_clicked.png'
 	);
 
 	music_button_pos = createVector(0, m_height-2*music_button_size);
@@ -61,22 +72,26 @@ function setup() {
 		music_button_pos,
 		music_button_size,
 		music_button_size,
-		music_button_action
+		music_button_action,
+		'image',
+		'assets/mus.png',
+		'assets/musi.png'
 	);
 
 	buttons = [dialer_button, contacts_button, calc_button, camera_button, music_button];
-
+	wall = loadImage('assets/wall.jpeg');
 }
 
 function draw() {
 	draw_outline();
-
+	image(wall,0,0,m_width,m_height);
 	// Temporary
-	fill(0);
-	noStroke();
-	textSize(24);
-	textAlign(CENTER, CENTER)
-	text('Homescreen', m_width/2, m_height/2);
+	//fill(0);
+	//noStroke();
+	//textSize(24);
+	//textAlign(CENTER, CENTER)
+	//text('Homescreen', m_width/2, m_height/2);
+	
 
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].draw();
