@@ -11,7 +11,7 @@ function draw_outline(){
 }
 
 class TextBox {
-	constructor(txt, pos, width, height, txt_size, horiz_align=CENTER, vert_align=CENTER) {
+	constructor(txt, pos, width, height, txt_size, horiz_align=CENTER, vert_align=CENTER, fill_color='black', stroke_color='black', stroke_weight=0) {
 		this.txt = txt;
 		this.pos = pos;
 		this.width = width;
@@ -19,11 +19,15 @@ class TextBox {
 		this.txt_size = txt_size;
 		this.horiz_align = horiz_align;
 		this.vert_align = vert_align;
+		this.fill_color = color(fill_color);
+		this.stroke_color = color(stroke_color);
+		this.stroke_weight = stroke_weight;
 	}
 
 	draw() {
-		fill(0);
-		noStroke();
+		strokeWeight(this.stroke_weight);
+		stroke(this.stroke_color);
+		fill(this.fill_color);
 		textSize(this.txt_size);
 		textAlign(this.horiz_align, this.vert_align);
 		text(this.txt, this.pos.x, this.pos.y, this.width, this.height);
@@ -77,6 +81,7 @@ class Button {
 	draw() {
 		if (this.mode == "text"){
 			fill(this.current);
+			strokeWeight(1);
 			stroke(0);
 			rect(this.pos.x, this.pos.y, this.width, this.height);
 			this.txt_box.draw();
@@ -102,6 +107,101 @@ class Button {
 	click() {
 		this.current = this.onclick;
 		return this.action();
+	}
+};
+
+class Selector {
+	// A rectangular clickable region which is 'selected' on click
+	constructor(selected,pos,width,height,def,onselect) {
+		this.init_selected = selected;
+		this.selected = selected;
+		this.pos = pos;
+		this.width = width;
+		this.height = height;
+
+		this.def = loadImage(def);
+		this.onselect = loadImage(onselect);		
+	}
+	draw() {
+		if (this.selected) {
+			image(this.def, this.pos.x, this.pos.y, this.width, this.height);
+		}
+		else {
+			image(this.onselect, this.pos.x, this.pos.y, this.width, this.height);
+		}
+	}
+	isin(x, y){
+		// Returns true if (x, y) is inside the button region
+		if (
+			x > this.pos.x &&
+			x < this.pos.x+this.width &&
+			y > this.pos.y &&
+			y < this.pos.y+this.height
+		) {
+			return true;
+		}
+		return false;
+	}
+	click() {
+		this.selected = !(this.selected);
+	}
+	reset() {
+		this.selected = this.init_selected;
+	}
+	is_selected() {
+		return this.selected;
+	}
+};
+
+class Slider {
+	constructor(pos, width, height, background_color, fill_color, init_value, range) {
+		this.pos = pos;
+		this.width = width;
+		this.height = height;
+		this.background_color = color(background_color);
+		this.fill_color = color(fill_color);
+		this.init_value = init_value;
+		this.value = init_value;
+		this.range = range;
+	}
+
+	draw() {
+		let fill_width = map(this.value, this.range[0], this.range[1], 0, this.width);
+		stroke(0);
+		fill(this.background_color);
+		rect(this.pos.x, this.pos.y, this.width, this.height);
+		fill(this.fill_color);
+		rect(this.pos.x, this.pos.y, fill_width, this.height);
+	}
+
+	isin(x, y) {
+		// Returns true if (x, y) is inside the slider region
+		if (
+			x > this.pos.x &&
+			x < this.pos.x+this.width &&
+			y > this.pos.y &&
+			y < this.pos.y+this.height
+		) {
+			return true;
+		}
+		return false;
+	}
+
+	click(x, y) {
+		this.value = map(x, this.pos.x, this.pos.x+this.width, this.range[0], this.range[1]);
+		console.log(this.value);
+	}
+
+	get() {
+		return this.value;
+	}
+
+	reset() {
+		this.value = this.init_value;
+	}
+
+	is_custom() {
+		return this.value != this.init_value;
 	}
 };
 
@@ -184,8 +284,8 @@ class InputPad {
 		this.current_string = "";
 	}
 
-	backspace() {
-		this.current_string = this.current_string.substring(0, this.current_string.length-2);
+	backspace(n) {
+		this.current_string = this.current_string.substring(0, this.current_string.length-n);
 	}
 
 	feed(input) {
