@@ -79,7 +79,7 @@ function setup() {
 	);
 
 	buttons = [dialer_button, contacts_button, calc_button, camera_button, music_button];
-	wall = loadImage('assets/wall.jpeg');
+	wall = loadImage('assets/wall.png');
 }
 
 function draw() {
