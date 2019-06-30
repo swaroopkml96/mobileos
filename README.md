@@ -9,4 +9,6 @@ Mobile OS prototype using pure html, javascript and p5js.
 3. Calculator ([swaroopkml96](https://github.com/swaroopkml96))
 4. Music player ([Minhan22](https://github.com/Minhan22))
 5. Contacts ([Aimrush](https://github.com/Aimrush))
-6. Camera ([swaroopkml96](https://github.com/swaroopkml96))
+6. Camera ([swaroopkml96](https://github.com/swaroopkml96))  
+
+Developed as coursework for the software engineering course.
